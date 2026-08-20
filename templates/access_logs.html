@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Access Logs</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        .header {
+            background-color: #182848;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .back {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .log-box {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #182848;
+            color: white;
+        }
+
+        .allowed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .denied {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>NEET Paper Security System</h1>
+        <a href="/dashboard" class="back">Back to Dashboard</a>
+    </div>
+
+    <div class="container">
+
+        <h2>Access Logs</h2>
+
+        <div class="log-box">
+
+            <table>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Paper ID</th>
+                    <th>Action</th>
+                    <th>Status</th>
+                    <th>Date & Time</th>
+                </tr>
+
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log[0] }}</td>
+                    <td>{{ log[1] }}</td>
+                    <td>{{ log[2] }}</td>
+                    <td>{{ log[3] }}</td>
+
+                    <td>
+                        {% if log[4] == "Allowed" %}
+                            <span class="allowed">{{ log[4] }}</span>
+                        {% else %}
+                            <span class="denied">{{ log[4] }}</span>
+                        {% endif %}
+                    </td>
+
+                    <td>{{ log[5] }}</td>
+                </tr>
+                {% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

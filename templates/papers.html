@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question Paper Management</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+        }
+
+        .header {
+            background-color: #182848;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .back {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 18px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .container {
+            padding: 30px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            max-width: 600px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 8px;
+            margin-bottom: 18px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #182848;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .paper-list {
+            margin-top: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #182848;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>NEET Paper Security System</h1>
+        <a href="/dashboard" class="back">Back to Dashboard</a>
+    </div>
+
+    <div class="container">
+
+        <h2>Question Paper Management</h2>
+
+        <div class="form-box">
+
+            <h3>Add Question Paper</h3>
+
+            <form method="POST" action="/add-paper">
+
+                <label>Paper ID:</label>
+                <input type="text" name="paper_id" placeholder="Example: NEET-2026-001" required>
+
+                <label>Exam Year:</label>
+                <select name="year" required>
+                    <option value="">Select Year</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                </select>
+
+                <label>Paper Name:</label>
+                <input type="text" name="paper_name" placeholder="Example: NEET Practice Paper" required>
+
+                <button type="submit">Add Paper</button>
+
+            </form>
+
+        </div>
+
+        <div class="paper-list">
+
+            <h3>Available Question Papers</h3>
+
+            <table>
+
+                <tr>
+                    <th>Paper ID</th>
+                    <th>Paper Name</th>
+                    <th>Year</th>
+                    <th>Status</th>
+                </tr>
+
+               {% for paper in papers %}
+<tr>
+    <td>{{ paper[1] }}</td>
+    <td>{{ paper[2] }}</td>
+    <td>{{ paper[3] }}</td>
+    <td>{{ paper[4] }}</td>
+</tr>
+{% endfor %}
+
+            </table>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
